@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/material';
 import { Header, Footer } from './common';
-import { Home } from './home';
+import { Home, JokeDetail } from './home';
+import { About } from './about';
 import '../css/index.css';
 
 export default class App extends React.Component {
@@ -10,15 +11,7 @@ export default class App extends React.Component {
     super(props);
     this.theme = createTheme({
       palette: {
-        background: {
-          default: '#001833'
-        },
-        primary: {
-          main: '#0055b3'
-        },
-        secondary: {
-          main: '#ff0000'
-        }
+        mode: 'light'
       }
     });
   }
@@ -29,9 +22,13 @@ export default class App extends React.Component {
         <CssBaseline/>
         <BrowserRouter>
           <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-          </Switch>
+          <Container sx={{ my: 5 }}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/about" component={About} />
+              <Route path="/:id" component={JokeDetail} />
+            </Switch>
+          </Container>
           <Footer />
         </BrowserRouter>
       </ThemeProvider>

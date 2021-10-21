@@ -1,4 +1,11 @@
+html {
+  height: 100% !important;
+}
+
 body {
+  height: inherit;
+  display: flex !important;
+  flex-direction: column !important;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +17,15 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+#root {
+  height: inherit;
+  display: inherit;
+  flex-direction: inherit;
 }
