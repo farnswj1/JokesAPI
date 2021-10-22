@@ -15,7 +15,8 @@ export default class JokeDetail extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    axios.get(process.env.REACT_APP_API_URL + 'jokes/' + id)
+    const url = process.env.REACT_APP_API_URL + 'jokes/' + id;
+    axios.get(url)
       .then(response => {
         this.setState({
           loading: false,

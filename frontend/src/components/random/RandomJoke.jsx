@@ -20,7 +20,8 @@ export default class RandomJoke extends React.Component {
   }
 
   getRandomJoke() {
-    axios.get(process.env.REACT_APP_API_URL + 'jokes/random')
+    const url = process.env.REACT_APP_API_URL + 'jokes/random';
+    axios.get(url)
       .then(response => {
         this.setState({
           loading: false,

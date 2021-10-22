@@ -23,7 +23,8 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.getJokesList(process.env.REACT_APP_API_URL + 'jokes/')
+    const url = process.env.REACT_APP_API_URL + 'jokes/';
+    this.getJokesList(url);
   }
 
   getJokesList(url) {
@@ -63,7 +64,8 @@ export default class Home extends React.Component {
       params = `?title=${encodeURIComponent(searchTitle)}`;
     }
 
-    this.getJokesList(process.env.REACT_APP_API_URL + 'jokes/' + params)
+    const url = process.env.REACT_APP_API_URL + 'jokes/' + params;
+    this.getJokesList(url);
   }
 
   render() {
