@@ -11,6 +11,9 @@ export default class Header extends React.Component {
             <Typography sx={{ flexGrow: 1 }}>
               <Link to="/">Jokes API</Link>
             </Typography>
+            <Typography color="inherit" sx={{ mr: 3 }}>
+              <Link to="/random">Random</Link>
+            </Typography>
             <Typography color="inherit">
               <Link to="/about">About</Link>
             </Typography>

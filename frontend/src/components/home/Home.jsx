@@ -11,16 +11,29 @@ export default class Home extends React.Component {
     this.state = {
       loading: true,
       jokes: [],
-      error: null
+      previousPage: null,
+      nextPage: null,
+      error: null,
+      searchTitle: ''
     };
+
+    this.getJokesList = this.getJokesList.bind(this);
+    this.onSearchTitleChange = this.onSearchTitleChange.bind(this);
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
 
   componentDidMount() {
-    axios.get(process.env.REACT_APP_API_URL + 'jokes/')
+    this.getJokesList(process.env.REACT_APP_API_URL + 'jokes/')
+  }
+
+  getJokesList(url) {
+    axios.get(url)
       .then(response => {
         this.setState({
           loading: false,
           jokes: response.data.results,
+          previousPage: response.data.previous,
+          nextPage: response.data.next,
           error: null
         });
       })
@@ -28,18 +41,41 @@ export default class Home extends React.Component {
         this.setState({
           loading: false,
           jokes: [],
-          error: error.response.status
+          previousPage: null,
+          nextPage: null,
+          error: error.response.status,
         });
       });
   }
 
+  onSearchTitleChange(title) {
+    this.setState({ searchTitle: title });
+  }
+
+  handleSearchSubmit(event) {
+    event.preventDefault();
+    this.setState({ loading: true });
+
+    const { searchTitle } = this.state;
+    let params = '';
+
+    if (searchTitle) {
+      params = `?title=${encodeURIComponent(searchTitle)}`;
+    }
+
+    this.getJokesList(process.env.REACT_APP_API_URL + 'jokes/' + params)
+  }
+
   render() {
-    const { jokes, loading, error } = this.state;
+    const { loading, jokes, previousPage, nextPage, error } = this.state;
     return (
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8}>
           <Box sx={{ mb: 3 }}>
-          <JokeSearchForm />
+            <JokeSearchForm
+              onSearchTitleChange={this.onSearchTitleChange}
+              handleSubmit={this.handleSearchSubmit}
+            />
           </Box>
           {
             loading ? (
@@ -49,7 +85,12 @@ export default class Home extends React.Component {
             ) : jokes.length === 0 ? (
               <Typography variant="h5">No joke met the search criteria.</Typography>
             ) : (
-              <JokeList jokes={jokes}/>
+              <JokeList
+                jokes={jokes}
+                previousPage={previousPage}
+                nextPage={nextPage}
+                switchPage={this.getJokesList}
+              />
             )
           }
         </Grid>

@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/materia
 import { Header, Footer } from './common';
 import { Home, JokeDetail } from './home';
 import { About } from './about';
+import { RandomJoke } from './random';
 import '../css/index.css';
 
 export default class App extends React.Component {
@@ -26,6 +27,7 @@ export default class App extends React.Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
+              <Route path="/random" component={RandomJoke} />
               <Route path="/:id" component={JokeDetail} />
             </Switch>
           </Container>
