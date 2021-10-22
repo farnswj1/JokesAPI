@@ -23,26 +23,20 @@ export default class JokeList extends React.Component {
               sx={{ mt: 5 }}
               aria-label="outlined primary button group"
             >
-              {
-                previousPage && (
-                  <Button
-                    size="large"
-                    onClick={event => switchPage(previousPage)}
-                  >
-                    &laquo;
-                  </Button>
-                )
-              }
-              {
-                nextPage && (
-                  <Button
-                    size="large"
-                    onClick={event => switchPage(nextPage)}
-                  >
-                    &raquo;
-                  </Button>
-                )
-              }
+              <Button
+                size="large"
+                disabled={!previousPage}
+                onClick={event => switchPage(previousPage)}
+              >
+                &laquo;
+              </Button>
+              <Button
+                size="large"
+                disabled={!nextPage}
+                onClick={event => switchPage(nextPage)}
+              >
+                &raquo;
+              </Button>
             </ButtonGroup>
           )
         }

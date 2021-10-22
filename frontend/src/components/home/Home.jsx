@@ -73,6 +73,9 @@ export default class Home extends React.Component {
     return (
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8}>
+          <Typography variant="h2" align="center" sx={{ mb: 3 }}>
+            Jokes API
+          </Typography>
           <Box sx={{ mb: 3 }}>
             <JokeSearchForm
               onSearchTitleChange={this.onSearchTitleChange}
