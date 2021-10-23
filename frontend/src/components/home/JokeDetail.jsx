@@ -45,7 +45,11 @@ export default class JokeDetail extends React.Component {
           ) : (
             <Box>
               <Typography variant="h4" sx={{ mb: 5 }}>{joke.title}</Typography>
-              <Typography>{joke.body}</Typography>
+              {
+                joke.body.split(/\n+/g).map((str, index) => (
+                  <Typography key={index} sx={{ mb: 3 }}>{str}</Typography>
+                ))
+              }
             </Box>
           )
         }

@@ -1,7 +1,8 @@
 from django.db import models
 from django.core.validators import (
     MinLengthValidator,
-    MaxLengthValidator
+    MaxLengthValidator,
+    RegexValidator
 )
 
 # Create your models here.
@@ -11,7 +12,8 @@ class Joke(models.Model):
         null=False,
         validators=[
             MinLengthValidator(1),
-            MaxLengthValidator(100)
+            MaxLengthValidator(100),
+            RegexValidator(r'^[^\n]+$')
         ]
     )
     body = models.CharField(

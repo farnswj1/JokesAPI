@@ -4,6 +4,7 @@ import { Box, AppBar, Toolbar, Typography } from '@mui/material';
 
 export default class Header extends React.Component {
   render() {
+    const { token, logout } = this.props;
     return (
       <Box>
         <AppBar position="sticky">
@@ -11,10 +12,25 @@ export default class Header extends React.Component {
             <Typography sx={{ flexGrow: 1 }}>
               <Link to="/">Jokes API</Link>
             </Typography>
-            <Typography color="inherit" sx={{ mr: 3 }}>
+            {
+              token ? (
+                <Typography
+                  role="button"
+                  sx={{ mr: 3 }}
+                  onClick={logout}
+                >
+                  Logout
+                </Typography>
+              ) : (
+                <Typography sx={{ mr: 3 }}>
+                  <Link to="/login">Login</Link>
+                </Typography>
+              )
+            }
+            <Typography sx={{ mr: 3 }}>
               <Link to="/random">Random</Link>
             </Typography>
-            <Typography color="inherit">
+            <Typography>
               <Link to="/about">About</Link>
             </Typography>
           </Toolbar>
