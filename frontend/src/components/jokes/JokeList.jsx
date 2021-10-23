@@ -21,7 +21,6 @@ export default class JokeList extends React.Component {
             <ButtonGroup
               variant="contained"
               sx={{ mt: 5 }}
-              aria-label="outlined primary button group"
             >
               <Button
                 size="large"

@@ -12,27 +12,23 @@ export default class Header extends React.Component {
             <Typography sx={{ flexGrow: 1 }}>
               <Link to="/">Jokes API</Link>
             </Typography>
+            <Typography sx={{ mr: 3 }}>
+              <Link to="/random">Random</Link>
+            </Typography>
+            <Typography sx={{ mr: 3 }}>
+              <Link to="/about">About</Link>
+            </Typography>
             {
               token ? (
-                <Typography
-                  role="button"
-                  sx={{ mr: 3 }}
-                  onClick={logout}
-                >
+                <Typography role="button" onClick={logout}>
                   Logout
                 </Typography>
               ) : (
-                <Typography sx={{ mr: 3 }}>
+                <Typography>
                   <Link to="/login">Login</Link>
                 </Typography>
               )
             }
-            <Typography sx={{ mr: 3 }}>
-              <Link to="/random">Random</Link>
-            </Typography>
-            <Typography>
-              <Link to="/about">About</Link>
-            </Typography>
           </Toolbar>
         </AppBar>
       </Box>

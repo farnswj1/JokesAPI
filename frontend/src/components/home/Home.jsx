@@ -1,13 +1,15 @@
 import React from 'react';
-import { Grid, Box, Typography, LinearProgress } from '@mui/material';
-import JokeSearchForm from './JokeSearchForm';
-import JokeList from './JokeList';
+import { Link } from 'react-router-dom';
+import { Grid, Box, Typography, Button, LinearProgress } from '@mui/material';
+import { JokeList, JokeSearchForm } from '../jokes';
+import { Token } from '../auth';
 import axios from 'axios';
 
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
 
+    this.token = new Token();
     this.state = {
       loading: true,
       jokes: [],
@@ -70,6 +72,7 @@ export default class Home extends React.Component {
 
   render() {
     const { loading, jokes, previousPage, nextPage, error } = this.state;
+    const is_staff = this.token.getUser()?.is_staff;
     return (
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8}>
@@ -82,6 +85,13 @@ export default class Home extends React.Component {
               handleSubmit={this.handleSearchSubmit}
             />
           </Box>
+          {
+            is_staff && (
+              <Link to="/new">
+                <Button variant="contained" sx={{ mb: 3 }}>Add New Joke</Button>
+              </Link>
+            )
+          }
           {
             loading ? (
               <LinearProgress color="inherit" />

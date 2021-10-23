@@ -1,12 +1,14 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Grid, Typography, FormControl, TextField, Button } from '@mui/material';
+import { Grid, Box, Typography, FormControl, TextField, Button } from '@mui/material';
+import Token from './token';
 import axios from 'axios';
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
-
+  
+    this.token = new Token();
     this.state = {
       username: null,
       password: null,
@@ -22,7 +24,9 @@ export default class Login extends React.Component {
     const { username, password } = this.state;
     const data = { username: username, password: password };
 
-    axios.post(process.env.REACT_APP_API_URL + 'login', data)
+    const url = process.env.REACT_APP_API_URL + 'login';
+
+    axios.post(url, data)
       .then(response => {
         const { login } = this.props;
         login(response.data);
@@ -35,8 +39,9 @@ export default class Login extends React.Component {
 
   render() {
     const { success, error } = this.state;
+    const token = this.token.get();
 
-    if (success) {
+    if (success || token) {
       return <Redirect to="/" />;
     }
 
@@ -44,7 +49,7 @@ export default class Login extends React.Component {
       <Grid container justifyContent="center">
         <Grid item xs={12} sm={10} md={8}>
           <Typography variant="h4" sx={{ mb: 5 }}>Login</Typography>
-          <form onSubmit={this.handleSubmit}>
+          <Box component="form" onSubmit={this.handleSubmit}>
             <FormControl fullWidth variant="outlined">
               {
                 error && (
@@ -72,7 +77,7 @@ export default class Login extends React.Component {
               <Button variant="contained" type="submit" size="large">
                 Login
               </Button>
-            </form>
+            </Box>
         </Grid>
       </Grid>
     );
