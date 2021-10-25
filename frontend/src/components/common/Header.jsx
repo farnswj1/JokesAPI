@@ -20,8 +20,8 @@ export default class Header extends React.Component {
             </Typography>
             {
               token ? (
-                <Typography role="button" onClick={logout}>
-                  Logout
+                <Typography onClick={logout}>
+                  <Link to="/">Logout</Link>
                 </Typography>
               ) : (
                 <Typography>

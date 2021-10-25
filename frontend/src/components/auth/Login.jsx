@@ -29,8 +29,8 @@ export default class Login extends React.Component {
     axios.post(url, data)
       .then(response => {
         const { login } = this.props;
-        login(response.data);
         this.setState({ success: true, error: null });
+        login(response.data);
       })
       .catch(error => {
         this.setState({ success: false, error: error.response.status });

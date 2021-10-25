@@ -26,12 +26,12 @@ export default class App extends React.Component {
 
   login(credentials) {
     this.token.set(credentials);
-    this.forceUpdate();
+    this.setState({});
   }
 
   logout() {
     this.token.delete();
-    this.forceUpdate();
+    this.setState({});
   }
 
   render() {
