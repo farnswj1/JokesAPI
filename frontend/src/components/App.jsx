@@ -38,7 +38,7 @@ export default class App extends React.Component {
     const token = this.token.get();
     return (
       <ThemeProvider theme={this.theme}>
-        <CssBaseline/>
+        <CssBaseline />
         <BrowserRouter>
           <Header token={token} logout={this.logout} />
           <Container sx={{ my: 5 }}>
