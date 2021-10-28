@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export default class JokeSearchForm extends React.Component {
   render() {
-    const { onSearchTitleChange, handleSubmit } = this.props;
+    const { handleSubmit } = this.props;
     return (
       <Box component="form" onSubmit={handleSubmit}>
         <FormControl fullWidth variant="outlined">
@@ -20,7 +20,6 @@ export default class JokeSearchForm extends React.Component {
                 </InputAdornment>
               )
             }}
-            onChange={event => onSearchTitleChange(event.target.value)}
           />
         </FormControl>
       </Box>

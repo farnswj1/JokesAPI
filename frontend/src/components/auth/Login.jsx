@@ -10,8 +10,6 @@ export default class Login extends React.Component {
   
     this.token = new Token();
     this.state = {
-      username: null,
-      password: null,
       success: null,
       error: null
     };
@@ -21,8 +19,10 @@ export default class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { username, password } = this.state;
-    const data = { username: username, password: password };
+
+    const data = new FormData();
+    data.append('username', event.target.username.value);
+    data.append('password', event.target.password.value);
 
     const url = process.env.REACT_APP_API_URL + 'login';
 
@@ -63,7 +63,6 @@ export default class Login extends React.Component {
                 label="Username"
                 sx={{ mb: 3 }}
                 required
-                onChange={event => this.setState({ username: event.target.value })}
               />
               <TextField
                 id="password"
@@ -71,7 +70,6 @@ export default class Login extends React.Component {
                 type="password"
                 sx={{ mb: 3 }}
                 required
-                onChange={event => this.setState({ password: event.target.value })}
               />
               </FormControl>
               <Button variant="contained" type="submit" size="large">

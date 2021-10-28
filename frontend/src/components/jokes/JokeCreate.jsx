@@ -10,8 +10,6 @@ export default class JokeCreate extends React.Component {
 
     this.token = new Token();
     this.state = {
-      title: null,
-      body: null,
       success: null,
       error: null
     };
@@ -28,11 +26,10 @@ export default class JokeCreate extends React.Component {
         'Authorization': `Bearer ${token}`
       }
     };
-    const { title, body } = this.state;
 
     const data = new FormData();
-    data.append('title', title);
-    data.append('body', body);
+    data.append('title', event.target.title.value);
+    data.append('body', event.target.body.value);
 
     const url = process.env.REACT_APP_API_URL + 'jokes/create';
     
@@ -79,7 +76,6 @@ export default class JokeCreate extends React.Component {
                 label="Title"
                 sx={{ mb: 3 }}
                 required
-                onChange={event => this.setState({ title: event.target.value })}
               />
               <TextField
                 id="body"
@@ -88,7 +84,6 @@ export default class JokeCreate extends React.Component {
                 multiline
                 maxRows={30}
                 required
-                onChange={event => this.setState({ body: event.target.value })}
               />
               </FormControl>
               <Button variant="contained" type="submit" size="large">

@@ -16,11 +16,9 @@ export default class Home extends React.Component {
       previousPage: null,
       nextPage: null,
       error: null,
-      searchTitle: ''
     };
 
     this.getJokesList = this.getJokesList.bind(this);
-    this.onSearchTitleChange = this.onSearchTitleChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
 
@@ -51,19 +49,15 @@ export default class Home extends React.Component {
       });
   }
 
-  onSearchTitleChange(title) {
-    this.setState({ searchTitle: title });
-  }
-
   handleSearchSubmit(event) {
     event.preventDefault();
     this.setState({ loading: true });
 
-    const { searchTitle } = this.state;
     let params = '';
+    const title = event.target.title.value;
 
-    if (searchTitle) {
-      params = `?title=${encodeURIComponent(searchTitle)}`;
+    if (title) {
+      params = `?title=${encodeURIComponent(title)}`;
     }
 
     const url = process.env.REACT_APP_API_URL + 'jokes/' + params;
@@ -81,7 +75,6 @@ export default class Home extends React.Component {
           </Typography>
           <Box sx={{ mb: 3 }}>
             <JokeSearchForm
-              onSearchTitleChange={this.onSearchTitleChange}
               handleSubmit={this.handleSearchSubmit}
             />
           </Box>

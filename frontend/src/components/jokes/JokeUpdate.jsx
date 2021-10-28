@@ -59,11 +59,10 @@ export default class JokeCreate extends React.Component {
         'Authorization': `Bearer ${token}`
       }
     };
-    const { title, body } = this.state;
 
     const data = new FormData();
-    data.append('title', title);
-    data.append('body', body);
+    data.append('title', event.target.title.value);
+    data.append('body', event.target.body.value);
 
     const id = this.props.match.params.id;
     const url = process.env.REACT_APP_API_URL + `jokes/${id}/update`;
