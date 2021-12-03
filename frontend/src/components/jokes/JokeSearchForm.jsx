@@ -13,8 +13,8 @@ export default class JokeSearchForm extends React.Component {
             label="Search jokes"
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end" onClick={handleSubmit}>
-                  <IconButton>
+                <InputAdornment position="end">
+                  <IconButton type="submit">
                     <SearchIcon />
                   </IconButton>
                 </InputAdornment>
