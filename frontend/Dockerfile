@@ -2,7 +2,7 @@
 FROM node:13.12.0-alpine
 
 # set directory
-WORKDIR /app/frontend
+WORKDIR /frontend
 
 # install dependencies
 COPY package.json package-lock.json ./
