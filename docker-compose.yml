@@ -14,9 +14,9 @@ services:
       - mysql_data:/var/lib/mysql
   backend:
     container_name: backend
-    image: backend
+    image: backend:latest
     restart: always
-    command : bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command : bash -c "python manage.py migrate && gunicorn backend.wsgi -w 4 -b 0.0.0.0:8000"
     env_file:
       - ./backend/.env
     build:
@@ -28,9 +28,8 @@ services:
       - mysql
   frontend:
     container_name: frontend
-    image: frontend
+    image: frontend:latest
     restart: always
-    command : npm start
     env_file:
       - ./frontend/.env
     build:
@@ -41,6 +40,17 @@ services:
     stdin_open: true
     depends_on:
       - backend
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
 
 volumes:
   mysql_data:
