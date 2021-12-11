@@ -33,7 +33,7 @@ DB_USER=root
 DB_PASSWORD=password
 DB_PORT=3306
 ```
-The database variables can be changed is desired. 
+The database variables can be changed as desired. 
 However, make sure to update the environment variables in 
 ```docker-compose.yml``` as well.
 

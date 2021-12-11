@@ -7,6 +7,7 @@ import { Home, JokeDetail } from './home';
 import { JokeCreate, JokeUpdate } from './jokes';
 import { About } from './about';
 import { RandomJoke } from './random';
+import { Error404 } from './errors';
 import '../css/index.css';
 
 export default class App extends React.Component {
@@ -48,8 +49,9 @@ export default class App extends React.Component {
               <Route path="/random" component={RandomJoke} />
               <Route path="/login" render={() => <Login login={this.login} />} />
               <Route path="/new" component={JokeCreate} />
-              <Route path="/:id/update" component={JokeUpdate} />
-              <Route path="/:id" component={JokeDetail} />
+              <Route path="/:id(\d+)/update" component={JokeUpdate} />
+              <Route path="/:id(\d+)" component={JokeDetail} />
+              <Route path="*" component={Error404} />
             </Switch>
           </Container>
           <Footer />

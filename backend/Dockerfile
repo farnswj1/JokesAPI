@@ -10,7 +10,7 @@ WORKDIR /backend
 # install dependencies
 COPY Pipfile Pipfile.lock ./
 RUN pip install pipenv
-RUN pipenv install --system --deploy
+RUN pipenv install --system --deploy --ignore-pipfile
 
 # add application
 COPY backend ./
