@@ -1,6 +1,5 @@
 # Jokes API
-This app, built with Django, React, and Material-UI, allows 
-users to read jokes that were extracted from Reddit. 
+This app allows users to read jokes that were extracted from Reddit. 
 
 ## Setup
 The project uses the following:
@@ -9,6 +8,7 @@ The project uses the following:
 - NPM
 - React 17.0.2
 - MySQL 8
+- Redis 5
 - Nginx 1.21
 - Docker
 
@@ -20,11 +20,11 @@ For additional information on project specifications, see
 In the ```backend``` directory, create a ```.env``` file 
 that contains the following environment variables:
 ```
-SECRET_KEY=[somerandomstring]
+SECRET_KEY=somerandomstring
 
 DEBUG=False
 ALLOWED_HOSTS=localhost
-CORS_ALLOWED_ORIGINS=http://localhost:3000 http://localhost
+CORS_ALLOWED_ORIGINS=http://localhost:3000 http://localhost http://127.0.0.1
 
 DB_ENGINE=django.db.backends.mysql
 DB_NAME=JokesAPI
@@ -32,6 +32,8 @@ DB_HOST=mysql
 DB_USER=root
 DB_PASSWORD=password
 DB_PORT=3306
+
+REDIS_URL=redis://redis:6379/1
 ```
 The database variables can be changed as desired. 
 However, make sure to update the environment variables in 

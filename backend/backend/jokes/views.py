@@ -1,3 +1,5 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework.generics import (
     ListAPIView,
     RetrieveAPIView,
@@ -25,6 +27,10 @@ class JokeListAPIView(ListAPIView):
     queryset = Joke.objects.all()
     serializer_class = JokeSerializer
     filterset_class = JokeFilterSet
+
+    @method_decorator(cache_page(3600))
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
 
 
 class JokeDetailAPIView(RetrieveAPIView):

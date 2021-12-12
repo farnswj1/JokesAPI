@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1ff804e7ac909d3730e5370848aeecd8a019ac513766c873689cfd34872b9879"
+            "sha256": "eadfb5ec49eb84d8f1961c9d02bb182b2756c0ec62828400c167a1cec54b7abf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -21,7 +21,6 @@
                 "sha256:4ef1ab46b484e3c706329cedeff284a5d40824200638503f5768edb6de7d58e9",
                 "sha256:ffc141aa908e6f175673e7b1b3b7af4fdb0ecb738fc5c8b88f69f055c2415214"
             ],
-            "markers": "python_version >= '3.6'",
             "version": "==3.4.1"
         },
         "django": {
@@ -47,6 +46,14 @@
             ],
             "index": "pypi",
             "version": "==21.1"
+        },
+        "django-redis": {
+            "hashes": [
+                "sha256:98fb3d31633a1addea1aeb558a647359908bbcf78c0833f99496c5348fe3c1b4",
+                "sha256:bf75bce0d6f65c3a6165dd6789506c8d22238f3bfaf7c4ad447e55afbc5b68cb"
+            ],
+            "index": "pypi",
+            "version": "==5.1.0"
         },
         "djangorestframework": {
             "hashes": [
@@ -88,7 +95,6 @@
                 "sha256:b888b4d56f06f6dcd777210c334e69c737be74755d3e5e9ee3fe67dc18a0ee41",
                 "sha256:e0c4bb8d9f0af0c7f5b1ec4c5036309617d03d56932877f2f7a0beeb5318322f"
             ],
-            "markers": "python_version >= '3.6'",
             "version": "==2.3.0"
         },
         "pytz": {
@@ -98,12 +104,18 @@
             ],
             "version": "==2021.3"
         },
+        "redis": {
+            "hashes": [
+                "sha256:0e7e0cfca8660dea8b7d5cd8c4f6c5e29e11f31158c0b0ae91a397f00e5a05a2",
+                "sha256:432b788c4530cfe16d8d943a09d40ca6c16149727e4afe8c2c9d5580c59d9f24"
+            ],
+            "version": "==3.5.3"
+        },
         "sqlparse": {
             "hashes": [
                 "sha256:0c00730c74263a94e5a9919ade150dfc3b19c574389985446148402998287dae",
                 "sha256:48719e356bb8b42991bdbb1e8b83223757b93789c00910a616a071910ca4a64d"
             ],
-            "markers": "python_version >= '3.5'",
             "version": "==0.4.2"
         }
     },

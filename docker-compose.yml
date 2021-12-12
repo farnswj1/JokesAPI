@@ -12,6 +12,14 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+  redis:
+    container_name: redis
+    image: redis:5
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
   backend:
     container_name: backend
     image: backend:latest
@@ -26,6 +34,7 @@ services:
       - "8000:8000"
     depends_on:
       - mysql
+      - redis
   frontend:
     container_name: frontend
     image: frontend:latest
@@ -54,3 +63,4 @@ services:
 
 volumes:
   mysql_data:
+  redis_data:
