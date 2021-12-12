@@ -56,3 +56,8 @@ To build, run ```docker-compose build```
 ## Running
 To run the web app, run ```docker-compose up -d```, then 
 go to http://localhost using your web browser.
+
+## Populating the Database
+This project provides data to use for the project.
+Populating the database should only be done once to avoid duplicate data. 
+To do so, run ```docker exec -it backend python manage.py loaddata data.json```.
