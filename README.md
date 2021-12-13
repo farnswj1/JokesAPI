@@ -24,7 +24,7 @@ SECRET_KEY=somerandomstring
 
 DEBUG=False
 ALLOWED_HOSTS=localhost
-CORS_ALLOWED_ORIGINS=http://localhost:3000 http://localhost http://127.0.0.1
+CORS_ALLOWED_ORIGIN_REGEXES=^https?://(localhost|127\.0\.0\.1)(:3000)?$
 
 DB_ENGINE=django.db.backends.mysql
 DB_NAME=JokesAPI
