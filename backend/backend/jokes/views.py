@@ -10,9 +10,10 @@ from rest_framework.generics import (
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Joke
-from .serializers import JokeSerializer
+from .serializers import JokeSerializer, JokeListSerializer
 from .filters import JokeFilterSet
 from random import choice
+
 
 # Create your views here.
 class JokeRandomAPIView(APIView):
@@ -25,7 +26,7 @@ class JokeRandomAPIView(APIView):
 
 class JokeListAPIView(ListAPIView):
     queryset = Joke.objects.all()
-    serializer_class = JokeSerializer
+    serializer_class = JokeListSerializer
     filterset_class = JokeFilterSet
 
     @method_decorator(cache_page(600))
