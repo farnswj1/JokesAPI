@@ -28,7 +28,7 @@ class JokeListAPIView(ListAPIView):
     serializer_class = JokeSerializer
     filterset_class = JokeFilterSet
 
-    @method_decorator(cache_page(3600))
+    @method_decorator(cache_page(600))
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
