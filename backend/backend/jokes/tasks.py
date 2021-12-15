@@ -13,7 +13,7 @@ def email_staff_about_new_joke(id):
     joke = Joke.objects.get(id=id)
     staff = User.objects.filter(is_staff=True).values_list("email", flat=True)
 
-    subject = "New Joke Created!"
+    subject = f"New Joke Created! (#{id})"
     message = f"""
     A new joke has been created!\n
     \n
@@ -31,7 +31,7 @@ def email_staff_about_updated_joke(id):
     joke = Joke.objects.get(id=id)
     staff = User.objects.filter(is_staff=True).values_list("email", flat=True)
 
-    subject = "A Joke Was Updated!"
+    subject = f"Joke #{id} Was Updated!"
     message = f"""
     A joke has been updated!\n
     \n
@@ -48,7 +48,7 @@ def email_staff_about_updated_joke(id):
 def email_staff_about_deleted_joke(joke):
     staff = User.objects.filter(is_staff=True).values_list("email", flat=True)
 
-    subject = "A Joke Was Deleted!"
+    subject = f"Joke #{joke.get('id')} Was Deleted!"
     message = f"""
     A joke has been deleted!\n
     \n
