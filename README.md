@@ -9,6 +9,7 @@ The project uses the following:
 - Celery 5.2.1
 - NPM
 - React 17.0.2
+- Material-UI 5.0.4
 - MySQL 8
 - Redis 5
 - Nginx 1.21
