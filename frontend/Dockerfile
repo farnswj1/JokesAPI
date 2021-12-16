@@ -7,7 +7,7 @@ WORKDIR /frontend
 # install dependencies
 COPY package.json package-lock.json ./
 RUN npm install 
-RUN npm install -g react-scripts@4.0.3 serve@13.0.2
+RUN npm install -g serve@13.0.2
 
 # add application
 COPY . ./

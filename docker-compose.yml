@@ -24,7 +24,7 @@ services:
     container_name: backend
     image: backend:latest
     restart: always
-    command : bash -c "python manage.py migrate && gunicorn backend.wsgi -w 4 -b 0.0.0.0:8000"
+    command : bash -c "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn backend.wsgi -w 4 -b 0.0.0.0:8000"
     env_file:
       - ./backend/.env
     build:
