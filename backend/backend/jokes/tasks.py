@@ -23,7 +23,7 @@ def email_staff_about_new_joke(id):
     """
     from_email = settings.EMAIL_HOST_USER
 
-    send_mail(subject, message, from_email, staff, fail_silently=True)
+    send_mail(subject, message, from_email, staff, fail_silently=False)
 
 
 @shared_task(name="jokes.email_staff_about_updated_joke")
