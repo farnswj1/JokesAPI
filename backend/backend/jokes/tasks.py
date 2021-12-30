@@ -1,3 +1,5 @@
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 from django.core.mail import send_mail
 from django.conf import settings
 from celery import shared_task
@@ -14,16 +16,18 @@ def email_staff_about_new_joke(id):
     staff = User.objects.filter(is_staff=True).values_list("email", flat=True)
 
     subject = f"New Joke Created! (#{id})"
-    message = f"""
-    A new joke has been created!\n
-    \n
-    ID: {joke.id}\n
-    Title: {joke.title}\n
-    Body: {joke.body}
-    """
+    html_message = render_to_string('mail/new_joke.html', context={"joke": joke})
+    plain_message = strip_tags(html_message)
     from_email = settings.EMAIL_HOST_USER
 
-    send_mail(subject, message, from_email, staff, fail_silently=False)
+    send_mail(
+        subject,
+        plain_message,
+        from_email,
+        staff,
+        html_message=html_message,
+        fail_silently=False
+    )
 
 
 @shared_task(name="jokes.email_staff_about_updated_joke")
@@ -32,16 +36,18 @@ def email_staff_about_updated_joke(id):
     staff = User.objects.filter(is_staff=True).values_list("email", flat=True)
 
     subject = f"Joke #{id} Was Updated!"
-    message = f"""
-    A joke has been updated!\n
-    \n
-    ID: {joke.id}\n
-    Title: {joke.title}\n
-    Body: {joke.body}
-    """
+    html_message = render_to_string('mail/updated_joke.html', context={"joke": joke})
+    plain_message = strip_tags(html_message)
     from_email = settings.EMAIL_HOST_USER
 
-    send_mail(subject, message, from_email, staff, fail_silently=False)
+    send_mail(
+        subject,
+        plain_message,
+        from_email,
+        staff,
+        html_message=html_message,
+        fail_silently=False
+    )
 
 
 @shared_task(name="jokes.email_staff_about_deleted_joke")
@@ -49,13 +55,15 @@ def email_staff_about_deleted_joke(joke):
     staff = User.objects.filter(is_staff=True).values_list("email", flat=True)
 
     subject = f"Joke #{joke.get('id')} Was Deleted!"
-    message = f"""
-    A joke has been deleted!\n
-    \n
-    ID: {joke.get("id")}\n
-    Title: {joke.get("title")}\n
-    Body: {joke.get("body")}
-    """
+    html_message = render_to_string('mail/deleted_joke.html', context={"joke": joke})
+    plain_message = strip_tags(html_message)
     from_email = settings.EMAIL_HOST_USER
 
-    send_mail(subject, message, from_email, staff, fail_silently=False)
+    send_mail(
+        subject,
+        plain_message,
+        from_email,
+        staff,
+        html_message=html_message,
+        fail_silently=False
+    )
