@@ -44,7 +44,6 @@ services:
       - ./backend/.env
     depends_on:
       - backend
-      - redis
   frontend:
     container_name: frontend
     image: frontend:latest
