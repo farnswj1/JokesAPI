@@ -11,7 +11,7 @@ The project uses the following:
 - React 17.0.2
 - Material-UI 5.0.4
 - MySQL 8
-- Redis 5
+- Redis 7
 - Nginx 1.21
 - Docker
 - Docker Compose
